@@ -1,15 +1,22 @@
-import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
+import { defineConfig } from "astro/config";
+
+// set default site, override in deployment action
+const { ASTRO_SITE = "cturner8.github.io" } = process.env;
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://blahg.netlify.app/",
-	base: "/",
-	integrations: [sitemap()],
-	markdown: {
-		shikiConfig: {
-			theme: "material-theme-darker",
-			langs: [],
-		},
-	},
+  site: `https://${ASTRO_SITE}`,
+  base: "/",
+  server: {
+    host: "127.0.0.1",
+    port: 40745,
+  },
+  integrations: [sitemap()],
+  markdown: {
+    shikiConfig: {
+      theme: "material-theme-darker",
+      langs: [],
+    },
+  },
 });
