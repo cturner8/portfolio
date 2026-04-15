@@ -12,20 +12,23 @@ interface Props {
   tag: CollectionEntry<"posts">[];
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   let posts = await getCollection("posts");
-  const tags = posts.reduce<Record<string, CollectionEntry<"posts">[]>>((allTags, post) => {
-    const postTags = post.data.tags;
-    if (postTags) {
-      postTags.forEach((tag) => {
-        if (!allTags[tag]) {
-          allTags[tag] = [];
-        }
-        allTags[tag].push(post);
-      });
-    }
-    return allTags;
-  }, {});
+  const tags = posts.reduce<Record<string, CollectionEntry<"posts">[]>>(
+    (allTags, post) => {
+      const postTags = post.data.tags;
+      if (postTags) {
+        postTags.forEach((tag) => {
+          if (!allTags[tag]) {
+            allTags[tag] = [];
+          }
+          allTags[tag].push(post);
+        });
+      }
+      return allTags;
+    },
+    {},
+  );
 
   return Object.keys(tags).map((t) => {
     return {
@@ -33,7 +36,7 @@ export async function getStaticPaths() {
       props: { tag: tags[t] },
     };
   });
-}
+};
 
 const { tag } = Astro.props;
 const { tag: currentTag } = Astro.params;
@@ -54,9 +57,9 @@ let sortedPosts = tag.sort(
         <ul class="tags-list">
           {
             sortedPosts.map(
-              ({
-                data: { description, slug, title, tags, added: date },
-              }) => <Post {description} {date} {slug} {title} {tags} />,
+              ({ data: { description, slug, title, tags, added: date } }) => (
+                <Post {description} {date} {slug} {title} {tags} />
+              ),
             )
           }
         </ul>

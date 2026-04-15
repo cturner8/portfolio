@@ -1,23 +1,23 @@
 <script is:inline>
   let colors = ["#24d05a", "#eb4888", "#10a2f5", "#e9bc3f"];
 
-  function getRandomColor() {
+  const getRandomColor = () => {
     return colors[Math.floor(Math.random() * colors.length)];
-  }
+  };
 
-  function setRandomLinkColor() {
+  const setRandomLinkColor = () => {
     Array.from(document.getElementsByTagName("a")).forEach((e) => {
       e.style.textDecorationColor = getRandomColor();
     });
-  }
+  };
 
-  function setColorHoverListener() {
+  const setColorHoverListener = () => {
     Array.from(document.querySelectorAll("a, button")).forEach((e) => {
       e.addEventListener("mouseover", setRandomLinkColor);
     });
-  }
+  };
 
-  (function () {
+  (() => {
     setRandomLinkColor();
     setColorHoverListener();
   })();

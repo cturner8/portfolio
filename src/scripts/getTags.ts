@@ -1,6 +1,6 @@
 import type { CollectionEntry } from "astro:content";
 
-export default function getTags(posts: CollectionEntry<"posts">[]) {
+export const getTags = (posts: CollectionEntry<"posts">[]) => {
   // Get tags from all posts
   const allTags = posts
     .map((post) => {
@@ -22,4 +22,4 @@ export default function getTags(posts: CollectionEntry<"posts">[]) {
   let tags = [...new Set(allTags)];
 
   return tags;
-}
+};

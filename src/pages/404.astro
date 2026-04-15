@@ -7,7 +7,7 @@ import Header from "../components/Header.astro";
 import Tags from "../components/Tags.astro";
 import { subtitle, title } from "../settings/settings.json";
 
-import getTags from "../scripts/getTags";
+import { getTags } from "../scripts/getTags";
 
 const posts = await getCollection("posts");
 const tags = getTags(posts);
