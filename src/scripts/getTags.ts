@@ -1,9 +1,11 @@
-export default function getTags(posts) {
+import type { CollectionEntry } from "astro:content";
+
+export default function getTags(posts: CollectionEntry<"posts">[]) {
   // Get tags from all posts
   const allTags = posts
     .map((post) => {
       const postTags = post.data.tags;
-      let allTags = [];
+      let allTags: string[] = [];
 
       if (postTags?.length > 0) {
         postTags.forEach((tag) => {

@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import BaseHead from "../../components/BaseHead.astro";
 import ColorScript from "../../components/ColorScript.astro";
 import Footer from "../../components/Footer.astro";
@@ -8,9 +8,13 @@ import Post from "../../components/Post.astro";
 
 import { subtitle, title } from "../../settings/settings.json";
 
+interface Props {
+  tag: CollectionEntry<"posts">[];
+}
+
 export async function getStaticPaths() {
   let posts = await getCollection("posts");
-  const tags = posts.reduce((allTags, post) => {
+  const tags = posts.reduce<Record<string, CollectionEntry<"posts">[]>>((allTags, post) => {
     const postTags = post.data.tags;
     if (postTags) {
       postTags.forEach((tag) => {
@@ -51,9 +55,8 @@ let sortedPosts = tag.sort(
           {
             sortedPosts.map(
               ({
-                url,
                 data: { description, slug, title, tags, added: date },
-              }) => <Post {url} {description} {date} {slug} {title} {tags} />,
+              }) => <Post {description} {date} {slug} {title} {tags} />,
             )
           }
         </ul>
