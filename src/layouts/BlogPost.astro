@@ -10,8 +10,11 @@ import { getTags } from "../scripts/getTags";
 const posts = await getCollection("posts");
 const allTags = getTags(posts);
 
+const {
+  content: { title, description, tags, heroImage },
+} = Astro.props;
 let {
-  content: { title, description, added, updated, tags, heroImage },
+  content: { added, updated },
 } = Astro.props;
 
 added = new Date(added).toLocaleDateString("en-us", {

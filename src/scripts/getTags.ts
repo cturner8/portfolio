@@ -5,21 +5,21 @@ export const getTags = (posts: CollectionEntry<"posts">[]) => {
   const allTags = posts
     .map((post) => {
       const postTags = post.data.tags;
-      let allTags: string[] = [];
+      const outputTags: string[] = [];
 
       if (postTags?.length > 0) {
         postTags.forEach((tag) => {
-          if (allTags?.indexOf(tag) === -1) {
-            allTags.push(tag);
+          if (outputTags?.indexOf(tag) === -1) {
+            outputTags.push(tag);
           }
         });
       }
-      return allTags;
+      return outputTags;
     })
     .flat(1);
 
   // Make the tags unique
-  let tags = [...new Set(allTags)];
+  const tags = [...new Set(allTags)];
 
   return tags;
 };

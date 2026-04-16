@@ -1,6 +1,6 @@
 ---
 const { href, class: className, ...props } = Astro.props;
-let isActive;
+let isActive: boolean;
 
 if (href === "/") {
   isActive = Astro.url.pathname === href;

@@ -8,7 +8,7 @@ interface Props {
 
 const { allPosts } = Astro.props;
 
-let posts = allPosts
+const posts = allPosts
   .sort(
     (a, b) =>
       new Date(b.data.updated || b.data.added).valueOf() -
