@@ -9,6 +9,7 @@ export const postSchema = z.object({
   description: z.string(),
   added: z.union([z.string(), z.date()]),
   updated: z.union([z.string(), z.date()]).optional(),
+  heroImage: z.string().optional(),
   tags: z.array(z.string()),
 });
 
