@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import HomePosts from "../components/HomePosts.astro";
+import { Content as About } from "../content/about.md";
 import SiteLayout from "../layouts/SiteLayout.astro";
-import { Content as About } from "./about.md";
 
 const posts = await getCollection("posts");
 ---
