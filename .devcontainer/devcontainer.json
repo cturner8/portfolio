@@ -26,8 +26,6 @@
     "vscode": {
       "extensions": [
         "astro-build.astro-vscode",
-        "GitHub.copilot",
-        "GitHub.copilot-chat",
         "esbenp.prettier-vscode"
       ]
     }
