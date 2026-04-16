@@ -1,4 +1,7 @@
-Sitemap: https://cturner8.dev/sitemap-index.xml
+import type { APIRoute } from "astro";
+
+const getRobotsTxt = (sitemapURL: URL) => `\
+Sitemap: ${sitemapURL.href}
 
 User-agent: *
 Disallow:
@@ -31,3 +34,9 @@ User-agent: PerplexityBot
 User-agent: Seekr
 User-agent: YouBot
 Disallow: /
+`;
+
+export const GET: APIRoute = ({ site }) => {
+  const sitemapURL = new URL("sitemap-index.xml", site);
+  return new Response(getRobotsTxt(sitemapURL));
+};
