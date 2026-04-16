@@ -1,6 +1,6 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
-import { subtitle, title } from "../settings/settings.json";
+import { subtitle, title } from "../content/settings.json";
 
 let posts = await getCollection("posts");
 
