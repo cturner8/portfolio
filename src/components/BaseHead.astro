@@ -4,6 +4,12 @@ import "../style/global.css";
 
 import { title as SITE_TITLE } from "../settings/settings.json";
 
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+
 const { title, description, image } = Astro.props;
 ---
 
@@ -28,14 +34,14 @@ const { title, description, image } = Astro.props;
   <meta property="og:url" content={Astro.url} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={new URL(image, Astro.url)} />
+  {image && <meta property="og:image" content={new URL(image, Astro.url)} />}
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content={Astro.url} />
   <meta property="twitter:title" content={title} />
   <meta property="twitter:description" content={description} />
-  <meta name="twitter:image" content={new URL(image, Astro.url)} />
+  {image && <meta name="twitter:image" content={new URL(image, Astro.url)} />}
 
   <!-- RSS Link -->
   <link

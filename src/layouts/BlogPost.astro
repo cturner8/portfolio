@@ -1,11 +1,17 @@
 ---
+import type { z } from "astro/zod";
 import { getCollection } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import ColorScript from "../components/ColorScript.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import Tags from "../components/Tags.astro";
+import type { postSchema } from "../content.config";
 import { getTags } from "../scripts/getTags";
+
+interface Props {
+  content: z.infer<typeof postSchema>;
+}
 
 const posts = await getCollection("posts");
 const allTags = getTags(posts);
