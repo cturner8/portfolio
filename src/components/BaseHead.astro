@@ -1,7 +1,7 @@
 ---
-import "../style/fonts.css";
 import "../style/global.css";
 
+import { Font } from "astro:assets";
 import { title as SITE_TITLE } from "../content/settings.json";
 
 interface Props {
@@ -14,6 +14,9 @@ const { title, description, image } = Astro.props;
 ---
 
 <head>
+  <!-- Fonts -->
+  <Font cssVariable="--font" />
+
   <!-- Global Metadata -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
