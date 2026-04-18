@@ -23,6 +23,9 @@ export default defineConfig({
       wrap: true,
     },
   },
+  image: {
+    layout: "constrained",
+  },
   fonts: [
     {
       provider: fontProviders.fontsource(),

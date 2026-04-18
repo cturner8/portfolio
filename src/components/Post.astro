@@ -1,10 +1,8 @@
 ---
-import type { z } from "astro/zod";
-import { postSchema } from "../content.config";
+import type { Post } from "../content.config";
 
-type PostData = z.infer<typeof postSchema>;
-type Props = Omit<PostData, "added" | "updated"> & {
-  date: PostData["added"];
+type Props = Omit<Post, "added" | "updated"> & {
+  date: Post["added"];
 };
 
 const { slug, title, tags, description, date } = Astro.props;
