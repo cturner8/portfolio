@@ -1,0 +1,64 @@
+---
+import type { z } from "astro/zod";
+import Tags from "../components/Tags.astro";
+import type { postSchema } from "../content.config";
+import SiteLayout from "./SiteLayout.astro";
+
+interface Props {
+  content: z.infer<typeof postSchema>;
+  frontmatter: {
+    minutesRead?: string;
+  };
+}
+
+const {
+  content: { title, tags, heroImage },
+  frontmatter: { minutesRead },
+} = Astro.props;
+let {
+  content: { added, updated },
+} = Astro.props;
+
+added = new Date(added).toLocaleDateString("en-gb", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+
+if (updated) {
+  updated = new Date(updated).toLocaleDateString("en-gb", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+---
+
+<SiteLayout includeTags>
+  <article>
+    {heroImage && <img width={720} height={360} src={heroImage} alt={title} />}
+    <h1 class="article-title">{title}</h1>
+    <p class="post-meta">
+      {
+        added && (
+          <span>
+            <time>{added}</time>
+          </span>
+        )
+      }
+      {
+        updated && (
+          <span>
+            last updated <time>{updated}</time>
+          </span>
+        )
+      }
+      {minutesRead && <span>{minutesRead}</span>}
+    </p>
+    <Tags tags={tags} />
+    <hr />
+    <div class="blog-post">
+      <slot />
+    </div>
+  </article>
+</SiteLayout>
