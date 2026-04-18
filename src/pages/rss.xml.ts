@@ -1,4 +1,4 @@
-import rss from "@astrojs/rss";
+import rss, { type RSSFeedItem } from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import { subtitle, title } from "../content/settings.json";
 
@@ -15,17 +15,18 @@ export const GET = () =>
     title: title || "",
     description: subtitle || "",
     site: import.meta.env.SITE,
-    items: posts.map((post) => {
-      return {
+    items: posts.map(
+      (post): RSSFeedItem => ({
         link: `/post/${post.data.slug}`,
         title: post.data.title,
         pubDate: post.data.added,
         description: post.data.description,
-        content: post.rendered.html,
+        content: post.rendered?.html,
         customData: `<updated>${
           post.data.updated ? post.data.updated : ""
         }</updated>`,
-      };
-    }),
+        categories: post.data.tags,
+      }),
+    ),
     stylesheet: "/rss-styles.xsl",
   });
