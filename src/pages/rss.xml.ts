@@ -25,9 +25,13 @@ export const GET = () =>
             : post.data.added,
         description: post.data.description,
         content: post.rendered?.html,
-        customData: `<updated>${
-          post.data.updated ? post.data.updated : ""
-        }</updated>`,
+        customData: post.data.updated
+          ? `<updated>${
+              typeof post.data.updated === "string"
+                ? new Date(post.data.updated)
+                : post.data.updated
+            }</updated>`
+          : undefined,
         categories: post.data.tags,
       }),
     ),
