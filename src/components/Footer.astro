@@ -1,9 +1,13 @@
 ---
+import settings from "../content/settings.json";
 const today = new Date();
 ---
 
 <footer>
-  &copy; {today.getFullYear()} cturner8
+  &copy; {today.getFullYear()}
+  <a href={settings.githubRepo} target="_blank" rel="noopener noreferrer">
+    {settings.username}
+  </a>
 </footer>
 <style>
   footer {
