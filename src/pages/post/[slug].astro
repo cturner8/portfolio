@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
-import BlogPost from "../../layouts/BlogPost.astro";
 
 interface Props {
   post: CollectionEntry<"posts">;
@@ -21,6 +20,4 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPost content={post.data}>
-  <Content />
-</BlogPost>
+<Content />
