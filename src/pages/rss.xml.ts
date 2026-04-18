@@ -19,7 +19,10 @@ export const GET = () =>
       (post): RSSFeedItem => ({
         link: `/post/${post.data.slug}`,
         title: post.data.title,
-        pubDate: post.data.added,
+        pubDate:
+          typeof post.data.added === "string"
+            ? new Date(post.data.added)
+            : post.data.added,
         description: post.data.description,
         content: post.rendered?.html,
         customData: `<updated>${
