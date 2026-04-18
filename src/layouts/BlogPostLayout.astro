@@ -12,26 +12,19 @@ interface Props {
 }
 
 const {
-  content: { title, tags, image, description },
+  content: { title, tags, image, description, added, updated },
   frontmatter: { minutesRead },
 } = Astro.props;
-let {
-  content: { added, updated },
-} = Astro.props;
 
-added = new Date(added).toLocaleDateString("en-gb", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
-
-if (updated) {
-  updated = new Date(updated).toLocaleDateString("en-gb", {
+const formatDate = (date: string | Date) =>
+  new Date(date).toLocaleDateString("en-gb", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
-}
+
+const formattedAdded = formatDate(added);
+const formattedUpdated = updated ? formatDate(updated) : undefined;
 ---
 
 <SiteLayout includeTags subtitle={title} description={description}>
@@ -41,24 +34,20 @@ if (updated) {
         <Picture
           src={image}
           formats={["avif", "webp"]}
-          alt={description ?? title}
+          alt={description || title}
         />
       )
     }
 
     <h1 class="article-title">{title}</h1>
     <p class="post-meta">
+      <span>
+        <time>{formattedAdded}</time>
+      </span>
       {
-        added && (
+        formattedUpdated && (
           <span>
-            <time>{added}</time>
-          </span>
-        )
-      }
-      {
-        updated && (
-          <span>
-            last updated <time>{updated}</time>
+            last updated <time>{formattedUpdated}</time>
           </span>
         )
       }

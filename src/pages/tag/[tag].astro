@@ -37,8 +37,10 @@ export const getStaticPaths = async () => {
 const { tag } = Astro.props;
 const { tag: currentTag } = Astro.params;
 
-const sortedPosts = tag.sort(
-  (a, b) => new Date(b.data.added).valueOf() - new Date(a.data.added).valueOf(),
+const sortedPosts = tag.toSorted(
+  (a, b) =>
+    new Date(b.data.updated || b.data.added).valueOf() -
+    new Date(a.data.updated || a.data.added).valueOf(),
 );
 ---
 

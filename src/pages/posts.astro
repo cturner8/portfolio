@@ -3,13 +3,9 @@ import { getCollection } from "astro:content";
 import Post from "../components/Post.astro";
 
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { sortPosts } from "../scripts/sortPosts";
 
-let posts = await getCollection("posts");
-posts = posts.sort(
-  (a, b) =>
-    new Date(b.data.updated || b.data.added).valueOf() -
-    new Date(a.data.updated || a.data.added).valueOf(),
-);
+const posts = sortPosts(await getCollection("posts"));
 ---
 
 <SiteLayout>

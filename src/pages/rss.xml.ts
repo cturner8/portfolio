@@ -1,17 +1,12 @@
 import rss, { type RSSFeedItem } from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import { subtitle, title } from "../content/settings.json";
+import { sortPosts } from "../scripts/sortPosts";
 
-let posts = await getCollection("posts");
+export const GET = async () => {
+  const posts = sortPosts(await getCollection("posts"));
 
-posts = posts.sort(
-  (a, b) =>
-    new Date(b.data.updated || b.data.added).valueOf() -
-    new Date(a.data.updated || a.data.added).valueOf(),
-);
-
-export const GET = () =>
-  rss({
+  return rss({
     title: title || "",
     description: subtitle || "",
     site: import.meta.env.SITE,
@@ -37,3 +32,4 @@ export const GET = () =>
     ),
     stylesheet: "/rss-styles.xsl",
   });
+};

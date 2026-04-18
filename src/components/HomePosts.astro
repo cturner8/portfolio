@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Post from "../components/Post.astro";
+import { sortPosts } from "../scripts/sortPosts";
 
 interface Props {
   allPosts: CollectionEntry<"posts">[];
@@ -8,16 +9,10 @@ interface Props {
 
 const { allPosts } = Astro.props;
 
-const posts = allPosts
-  .sort(
-    (a, b) =>
-      new Date(b.data.updated || b.data.added).valueOf() -
-      new Date(a.data.updated || a.data.added).valueOf(),
-  )
-  .slice(0, 5);
+const posts = sortPosts(allPosts).slice(0, 5);
 ---
 
-<content>
+<section>
   <ul class="posts-list">
     {
       posts.map(({ data: { description, slug, title, tags, added: date } }) => (
@@ -25,4 +20,4 @@ const posts = allPosts
       ))
     }
   </ul>
-</content>
+</section>

@@ -2,4 +2,10 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 ---
 
-<SiteLayout> 404: Page not found </SiteLayout>
+<SiteLayout subtitle="Page not found" description="The requested page could not be found.">
+  <div class="center">
+    <h1>404</h1>
+    <p>Page not found.</p>
+    <a href="/">← Back to home</a>
+  </div>
+</SiteLayout>
