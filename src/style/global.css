@@ -15,7 +15,8 @@
   --red: #e4002b;
   --green: #24d05a;
   --pink: #eb4888;
-  --blue: #10a2f5;
+  --blue: #002451;
+  --darkblue: #001c40;
   --yellow: #e9bc3f;
 }
 
@@ -80,7 +81,7 @@ body.dark-mode nav {
   body em,
   body blockquote,
   body .go-home {
-    background: var(--black);
+    background: var(--darkblue);
     color: var(--white);
   }
   body nav {
@@ -117,6 +118,10 @@ a {
   color: var(--black);
   text-decoration-thickness: 0.3ex;
   text-underline-offset: 0.3ex;
+}
+
+a:hover {
+  font-weight: bolder;
 }
 
 nav {
