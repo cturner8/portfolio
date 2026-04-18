@@ -1,0 +1,35 @@
+name: Verify Pull Request
+
+on:
+  merge_group: {}
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - "public/**"
+      - "src/**"
+      - "astro.config.ts"
+      - "pnpm-lock.yaml"
+      - "tsconfig.json"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6.0.2
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4.4.0
+        with:
+          version: latest
+          run_install: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v6.3.0
+        with:
+          node-version: "24"
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Run astro check
+        run: pnpm check
+      - name: Run astro build
+        run: pnpm build
