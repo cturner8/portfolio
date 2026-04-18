@@ -1,7 +1,7 @@
 ---
-import "../style/fonts.css";
 import "../style/global.css";
 
+import { Font } from "astro:assets";
 import { title as SITE_TITLE } from "../content/settings.json";
 
 interface Props {
@@ -14,13 +14,16 @@ const { title, description, image } = Astro.props;
 ---
 
 <head>
+  <!-- Fonts -->
+  <Font cssVariable="--font" />
+
   <!-- Global Metadata -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <!-- based on https://fav.farm, use an emoji as favicon -->
   <link
     rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>🏴󠁧󠁢󠁳󠁣󠁴󠁿</text></svg>"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>📝</text></svg>"
   />
   <meta name="generator" content={Astro.generator} />
 

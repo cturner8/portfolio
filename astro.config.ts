@@ -1,6 +1,6 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import { remarkReadingTime } from "./src/plugins/readingTime";
 
 // set default site, override in deployment action
@@ -23,4 +23,12 @@ export default defineConfig({
       wrap: true,
     },
   },
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: "IBM Plex Mono",
+      cssVariable: "--font",
+      fallbacks: ["monospace"],
+    },
+  ],
 });
