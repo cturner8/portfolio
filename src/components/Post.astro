@@ -14,7 +14,7 @@ const { slug, title, tags, description, date } = Astro.props;
   <a href={`/post/${slug}`} class="title">{title}</a>
   <time datetime={date instanceof Date ? date.toISOString() : date}>
     {
-      new Date(date).toLocaleDateString("en-us", {
+      new Date(date).toLocaleDateString("en-gb", {
         year: "numeric",
         month: "short",
         day: "numeric",
@@ -25,12 +25,11 @@ const { slug, title, tags, description, date } = Astro.props;
   {description && <span class="excerpt">{description}</span>}
   <div>
     {
-      tags &&
-        tags.map((tag) => (
-          <a class="tag" href={`/tag/${tag}`}>
-            #{tag}
-          </a>
-        ))
+      tags.map((tag) => (
+        <a class="tag" href={`/tag/${tag}`}>
+          #{tag}
+        </a>
+      ))
     }
   </div>
 </li>
