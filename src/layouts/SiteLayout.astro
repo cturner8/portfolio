@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import ColorScript from "../components/ColorScript.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Tags from "../components/Tags.astro";
+import settings from "../content/settings.json";
+import { getTags } from "../scripts/getTags";
+
+interface Props {
+  includeTags?: boolean;
+  subtitle?: string;
+  description?: string;
+}
+
+const { includeTags, subtitle, description = settings.subtitle } = Astro.props;
+
+let tags: string[] = [];
+if (includeTags) {
+  const posts = await getCollection("posts");
+  tags = getTags(posts);
+}
+---
+
+<!doctype html>
+<html lang="en-gb">
+  <BaseHead
+    title={subtitle ? `${subtitle} | ${settings.title}` : settings.title}
+    description={description}
+  />
+  <body>
+    <Header />
+    <main>
+      <content>
+        <slot />
+      </content>
+    </main>
+    {includeTags && <Tags tags={tags} all />}
+    <Footer />
+    <ColorScript />
+  </body>
+</html>

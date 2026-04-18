@@ -1,5 +1,5 @@
 ---
-import { subtitle, title } from "../settings/settings.json";
+import { github, linkedin, subtitle, title } from "../content/settings.json";
 import HeaderLink from "./HeaderLink.astro";
 ---
 
@@ -14,7 +14,8 @@ import HeaderLink from "./HeaderLink.astro";
 <nav>
   <HeaderLink href="/">home</HeaderLink>
   <HeaderLink href="/posts">posts</HeaderLink>
-  <HeaderLink href="https://cassidoo.co/newsletter">etc</HeaderLink>
+  <HeaderLink href={github}>github</HeaderLink>
+  <HeaderLink href={linkedin}>linkedin</HeaderLink>
 </nav>
 <style>
   h2 {

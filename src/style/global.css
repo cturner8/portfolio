@@ -256,6 +256,25 @@ time {
   color: var(--gray);
 }
 
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0;
+  font-size: 0.85rem;
+  color: var(--gray);
+  margin: 0.5rem 0;
+}
+
+.post-meta span {
+  white-space: nowrap;
+}
+
+.post-meta span:not(:last-child)::after {
+  content: "|";
+  margin: 0 0.5rem;
+}
+
 ul li time {
   white-space: nowrap;
 }

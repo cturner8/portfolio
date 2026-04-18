@@ -16,7 +16,7 @@
   },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
+  "forwardPorts": [40745],
 
   // Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "yarn install",
@@ -26,9 +26,8 @@
     "vscode": {
       "extensions": [
         "astro-build.astro-vscode",
-        "GitHub.copilot",
-        "GitHub.copilot-chat",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "unifiedjs.vscode-mdx"
       ]
     }
   },
