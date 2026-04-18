@@ -26,7 +26,8 @@
     "vscode": {
       "extensions": [
         "astro-build.astro-vscode",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "unifiedjs.vscode-mdx"
       ]
     }
   },
