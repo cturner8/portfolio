@@ -247,3 +247,7 @@ ul li time {
 .nomargin {
   margin: 0;
 }
+
+picture > img {
+  border-radius: 8px;
+}

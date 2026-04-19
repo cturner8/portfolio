@@ -19,7 +19,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: main
+    environment:
+      name: github-pages
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6.0.2

@@ -3,5 +3,10 @@
   "extends": ["config:recommended"],
   "addLabels": ["{{categories}}", "{{depType}}", "{{manager}}"],
   "assignees": ["cturner8"],
-  "timezone": "Europe/London"
+  "timezone": "Europe/London",
+  "packageRules": [
+    {
+      "minimumReleaseAge": "3 days"
+    }
+  ]
 }

@@ -1,18 +1,18 @@
 ---
-import type { z } from "astro/zod";
+import { Picture } from "astro:assets";
 import Tags from "../components/Tags.astro";
-import type { postSchema } from "../content.config";
+import type { Post } from "../content.config";
 import SiteLayout from "./SiteLayout.astro";
 
 interface Props {
-  content: z.infer<typeof postSchema>;
+  content: Post;
   frontmatter: {
     minutesRead?: string;
   };
 }
 
 const {
-  content: { title, tags, heroImage, description },
+  content: { title, tags, image, description },
   frontmatter: { minutesRead },
 } = Astro.props;
 let {
@@ -36,7 +36,16 @@ if (updated) {
 
 <SiteLayout includeTags subtitle={title} description={description}>
   <article>
-    {heroImage && <img width={720} height={360} src={heroImage} alt={title} />}
+    {
+      image && (
+        <Picture
+          src={image}
+          formats={["avif", "webp"]}
+          alt={description ?? title}
+        />
+      )
+    }
+
     <h1 class="article-title">{title}</h1>
     <p class="post-meta">
       {
