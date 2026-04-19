@@ -16,6 +16,28 @@ githubUrl: https://github.com/cturner8/copilot-cli-challenge
 ---
 
 import Video from "../../../components/Video.astro";
+import Collapsible from "../../../components/Collapsible.astro";
+import ImageGallery from "../../../components/ImageGallery.astro";
+
+import binaryListView from "./images/binary-list-view.png";
+import binaryListViewWithSearch from "./images/binary-list-view-with-search.png";
+import binaryListViewFilterPanel from "./images/binary-list-view-filter-panel.png";
+import binaryListViewWithFilter from "./images/binary-list-view-with-filter.png";
+import binaryAddView from "./images/binary-add-view.png";
+import binaryAddConfigView from "./images/binary-add-config-view.png";
+import binaryAddSuccessView from "./images/binary-add-success-view.png";
+import binaryInstalledVersionsView from "./images/binary-installed-versions-view.png";
+import binaryInstallView from "./images/binary-install-view.png";
+import binaryVersionInstalled from "./images/binary-version-installed.png";
+import binaryVersionUpdateAvailable from "./images/binary-version-update-available.png";
+import binaryVersionUpdated from "./images/binary-version-updated.png";
+import binaryVersionSwitch from "./images/binary-version-switch.png";
+import binaryAvailableVersionsView from "./images/binary-available-versions-view.png";
+import binaryVersionReleaseNotesView from "./images/binary-version-release-notes-view.png";
+import binaryRepoInfo from "./images/binary-repo-info.png";
+import binaryRepoStarAction from "./images/binary-repo-star-action.png";
+
+import { Image } from "astro:assets";
 
 _This is a [submission](https://dev.to/cturner8/binmate-a-binary-version-manager-13cb) for the [GitHub Copilot CLI Challenge](https://dev.to/challenges/github-2026-01-21)_
 
@@ -61,7 +83,104 @@ This short recording demonstrates the following functionality:
 
 <Video id={frontmatter.videoId} />
 
-Screenshots for remaining features are available on [GitHub](https://github.com/cturner8/copilot-cli-challenge/blob/main/DEMO.md)
+### Screenshots
+
+<Collapsible title="Binary List View" open>
+
+Provides an overview of configured binaries with actions for view installed versions, search, filter, sort, add new binary, install new version, update and remove.
+
+<Image src={binaryListView} alt="Binary list view showing configured binaries" />
+
+</Collapsible>
+
+<Collapsible title="Search & Filter">
+
+Enter a search query to perform an in-memory search of displayed binaries.
+
+<ImageGallery>
+  <Image src={binaryListViewWithSearch} alt="Binary list view with search" />
+  <Image src={binaryListViewFilterPanel} alt="Binary list view filter panel" />
+</ImageGallery>
+
+Filter panel provides options for provider, format, and installation status.
+
+<Image src={binaryListViewWithFilter} alt="Binary list view with active filter" />
+
+</Collapsible>
+
+<Collapsible title="Add Binary">
+
+Provides input for entering a GitHub release URL. The URL is parsed and required metadata is extracted automatically.
+
+<Image src={binaryAddView} alt="Binary add view with URL input" />
+
+Displays metadata extracted from the URL with the option to override any of the identified values.
+
+<ImageGallery>
+  <Image src={binaryAddConfigView} alt="Binary add configuration view" />
+  <Image src={binaryAddSuccessView} alt="Binary add success confirmation" />
+</ImageGallery>
+
+</Collapsible>
+
+<Collapsible title="Installed Versions">
+
+Provides an overview of the selected binary details along with a summary of installed versions. Actions include switching active version, installing new versions, checking for updates, deleting versions, and viewing release notes.
+
+<Image src={binaryInstalledVersionsView} alt="Binary installed versions view" />
+
+</Collapsible>
+
+<Collapsible title="Install & Update">
+
+Provides input for the version to install, defaulting to latest if not provided.
+
+<ImageGallery>
+  <Image src={binaryInstallView} alt="Binary install view" />
+  <Image src={binaryVersionInstalled} alt="Binary version installed confirmation" />
+</ImageGallery>
+
+Check for updates and apply them directly.
+
+<ImageGallery>
+  <Image src={binaryVersionUpdateAvailable} alt="Binary version update available" />
+  <Image src={binaryVersionUpdated} alt="Binary version updated confirmation" />
+</ImageGallery>
+
+</Collapsible>
+
+<Collapsible title="Version Switching">
+
+Switch between installed versions of a binary.
+
+<Image src={binaryVersionSwitch} alt="Binary installed version switch" />
+
+</Collapsible>
+
+<Collapsible title="Available Versions & Release Notes">
+
+Overview of available versions based on GitHub releases, supporting both pre-release and standard releases.
+
+<Image src={binaryAvailableVersionsView} alt="Binary available versions view" />
+
+View detailed release notes for any version.
+
+<Image src={binaryVersionReleaseNotesView} alt="Binary version release notes view" />
+
+</Collapsible>
+
+<Collapsible title="Repository Info">
+
+View the GitHub repository associated with a binary, with the ability to star it.
+
+<ImageGallery>
+  <Image src={binaryRepoInfo} alt="Binary repository info view" />
+  <Image src={binaryRepoStarAction} alt="Binary repository star action" />
+</ImageGallery>
+
+> **Note**: Starring requires a GitHub token available in your terminal environment. Depending on your access token type, this may not work on public repositories where you are not the owner.
+
+</Collapsible>
 
 [GitHub](https://github.com/cturner8/copilot-cli-challenge)
 
