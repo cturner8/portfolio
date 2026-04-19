@@ -24,6 +24,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6.0.2
+        with:
+          # get full history to allow compute of created/updated timestamps for site content
+          fetch-depth: 0
       - name: Install, build, and upload your site output
         uses: withastro/action@v6.1.0
         with:
