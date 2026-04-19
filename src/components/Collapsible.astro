@@ -7,7 +7,7 @@ interface Props {
 const { title, open = false } = Astro.props;
 ---
 
-<details open={open || undefined}>
+<details open={open}>
   <summary>{title}</summary>
   <div class="collapsible-content">
     <slot />
