@@ -10,6 +10,7 @@ const { ASTRO_SITE = "cturner8.github.io" } = process.env;
 export default defineConfig({
   site: `https://${ASTRO_SITE}`,
   base: "/",
+  output: "static",
   server: {
     host: "127.0.0.1",
     port: 40745,
