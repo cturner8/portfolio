@@ -2,6 +2,7 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig, fontProviders } from "astro/config";
 import { remarkReadingTime } from "./src/plugins/readingTime";
+import { remarkTimestamps } from "./src/plugins/timestamps";
 
 // set default site, override in deployment action
 const { ASTRO_SITE = "cturner8.github.io" } = process.env;
@@ -17,7 +18,7 @@ export default defineConfig({
   },
   integrations: [sitemap(), mdx()],
   markdown: {
-    remarkPlugins: [remarkReadingTime],
+    remarkPlugins: [remarkReadingTime, remarkTimestamps],
     shikiConfig: {
       theme: "material-theme-darker",
       langs: [],

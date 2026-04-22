@@ -8,30 +8,30 @@ interface Props {
   content: Post;
   frontmatter: {
     minutesRead?: string;
+    created?: string;
+    lastModified?: string;
   };
 }
 
 const {
   content: { title, tags, image, description },
-  frontmatter: { minutesRead },
-} = Astro.props;
-let {
-  content: { added, updated },
+  frontmatter: { minutesRead, created, lastModified },
 } = Astro.props;
 
-added = new Date(added).toLocaleDateString("en-gb", {
+const dateFormatOptions: Intl.DateTimeFormatOptions = {
   year: "numeric",
   month: "long",
   day: "numeric",
-});
+};
 
-if (updated) {
-  updated = new Date(updated).toLocaleDateString("en-gb", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
+const added = created
+  ? new Date(created).toLocaleDateString("en-gb", dateFormatOptions)
+  : undefined;
+
+const updated =
+  lastModified && created && lastModified !== created
+    ? new Date(lastModified).toLocaleDateString("en-gb", dateFormatOptions)
+    : undefined;
 ---
 
 <SiteLayout includeTags subtitle={title} description={description}>
