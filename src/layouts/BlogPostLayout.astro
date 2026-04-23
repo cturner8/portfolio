@@ -37,35 +37,54 @@ if (updated) {
 <SiteLayout includeTags subtitle={title} description={description}>
   <article>
     {
-      image && (
-        <Picture
-          src={image}
-          formats={["avif", "webp"]}
-          alt={description ?? title}
-        />
+      image ? (
+        <header class="post-hero">
+          <Picture
+            src={image}
+            formats={["avif", "webp"]}
+            alt={description ?? title}
+          />
+          <div class="post-hero__scrim">
+            <div class="post-hero__inner">
+              <h1 class="article-title">{title}</h1>
+              <p class="post-meta">
+                {added && (
+                  <span>
+                    <time>{added}</time>
+                  </span>
+                )}
+                {updated && (
+                  <span>
+                    last updated <time>{updated}</time>
+                  </span>
+                )}
+                {minutesRead && <span>{minutesRead}</span>}
+              </p>
+              <Tags tags={tags} />
+            </div>
+          </div>
+        </header>
+      ) : (
+        <>
+          <h1 class="article-title">{title}</h1>
+          <p class="post-meta">
+            {added && (
+              <span>
+                <time>{added}</time>
+              </span>
+            )}
+            {updated && (
+              <span>
+                last updated <time>{updated}</time>
+              </span>
+            )}
+            {minutesRead && <span>{minutesRead}</span>}
+          </p>
+          <Tags tags={tags} />
+          <hr />
+        </>
       )
     }
-
-    <h1 class="article-title">{title}</h1>
-    <p class="post-meta">
-      {
-        added && (
-          <span>
-            <time>{added}</time>
-          </span>
-        )
-      }
-      {
-        updated && (
-          <span>
-            last updated <time>{updated}</time>
-          </span>
-        )
-      }
-      {minutesRead && <span>{minutesRead}</span>}
-    </p>
-    <Tags tags={tags} />
-    <hr />
     <div class="blog-post">
       <slot />
     </div>
