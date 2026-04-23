@@ -6,7 +6,8 @@
   "timezone": "Europe/London",
   "packageRules": [
     {
-      "minimumReleaseAge": "3 days"
+      "minimumReleaseAge": "3 days",
+      "matchManagers": ["npm", "github-actions"]
     }
   ]
 }
