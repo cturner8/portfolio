@@ -1,0 +1,72 @@
+---
+interface Props {
+  title: string;
+  open?: boolean;
+}
+
+const { title, open = false } = Astro.props;
+---
+
+<details open={open}>
+  <summary>{title}</summary>
+  <div class="collapsible-content">
+    <slot />
+  </div>
+</details>
+
+<style>
+  details {
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    margin: 1rem 0;
+    overflow: hidden;
+  }
+
+  summary {
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--moretranswhite);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  summary::before {
+    content: "▸";
+    display: inline-block;
+    transition: rotate 0.2s ease;
+  }
+
+  details[open] > summary::before {
+    rotate: 90deg;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary:hover {
+    background: var(--transblack);
+  }
+
+  .collapsible-content {
+    padding: 0.75rem 1rem;
+  }
+
+  .collapsible-content :global(p) {
+    margin: 0.5rem 0;
+  }
+
+  .collapsible-content :global(img) {
+    border-radius: 6px;
+    margin: 0.5rem 0;
+    border: 1px solid var(--moretranswhite);
+  }
+
+  .collapsible-content :global(blockquote) {
+    margin: 0.5rem 0;
+  }
+</style>
