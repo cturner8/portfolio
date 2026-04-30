@@ -17,7 +17,7 @@ const posts = allPosts
   .slice(0, 5);
 ---
 
-<content>
+<section>
   <ul class="posts-list">
     {
       posts.map(({ data: { description, slug, title, tags, added: date } }) => (
@@ -25,4 +25,4 @@ const posts = allPosts
       ))
     }
   </ul>
-</content>
+</section>
