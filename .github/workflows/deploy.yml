@@ -23,7 +23,7 @@ jobs:
       name: github-pages
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
       - name: Install, build, and upload your site output
         uses: withastro/action@v6.1.1
         with:
