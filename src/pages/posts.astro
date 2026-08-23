@@ -12,7 +12,7 @@ posts = posts.sort(
 );
 ---
 
-<SiteLayout>
+<SiteLayout subtitle="posts">
   <ul class="posts-list">
     {
       posts.map(({ data: { description, slug, title, tags, added: date } }) => (

@@ -11,6 +11,9 @@ importers:
       '@astrojs/check':
         specifier: ^0.9.8
         version: 0.9.10(prettier@3.9.6)(typescript@6.0.3)
+      '@astrojs/markdown-remark':
+        specifier: ^7.2.4
+        version: 7.2.4(supports-color@7.2.0)
       '@astrojs/mdx':
         specifier: ^7.0.0
         version: 7.0.7(@astrojs/markdown-satteri@0.3.7)(astro@7.2.4(@astrojs/markdown-remark@7.2.4(supports-color@7.2.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.2)(@types/node@24.12.2)(yaml@2.9.0))(supports-color@7.2.0)
