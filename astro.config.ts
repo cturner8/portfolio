@@ -1,3 +1,4 @@
+import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig, fontProviders } from "astro/config";
@@ -17,12 +18,14 @@ export default defineConfig({
   },
   integrations: [sitemap(), mdx()],
   markdown: {
-    remarkPlugins: [remarkReadingTime],
     shikiConfig: {
       theme: "material-theme-darker",
       langs: [],
       wrap: true,
     },
+    processor: unified({
+      remarkPlugins: [remarkReadingTime],
+    }),
   },
   image: {
     layout: "constrained",

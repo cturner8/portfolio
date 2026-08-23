@@ -14,8 +14,12 @@ import HeaderLink from "./HeaderLink.astro";
 <nav>
   <HeaderLink href="/">home</HeaderLink>
   <HeaderLink href="/posts">posts</HeaderLink>
-  <HeaderLink href={github}>github</HeaderLink>
-  <HeaderLink href={linkedin}>linkedin</HeaderLink>
+  <HeaderLink href={github} rel="noopener noreferrer" target="_blank"
+    >github</HeaderLink
+  >
+  <HeaderLink href={linkedin} rel="noopener noreferrer" target="_blank"
+    >linkedin</HeaderLink
+  >
 </nav>
 <style>
   h2 {
