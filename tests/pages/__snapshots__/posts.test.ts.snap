@@ -1,0 +1,44 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`posts > matches snapshot 1`] = `
+"<html lang="en-gb"><head><!-- Fonts --><style>@font-face {
+  font-family: "IBM Plex Mono-a63653b38a9ed5e8";
+  src: url("/_astro/fonts/font-400-normal-latin-a3a0a8110b9e369d.woff2") format("woff2");
+  font-display: swap;
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBM Plex Mono-a63653b38a9ed5e8";
+  src: url("/_astro/fonts/font-400-italic-latin-7bad25613aa43c75.woff2") format("woff2");
+  font-display: swap;
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "IBM Plex Mono-a63653b38a9ed5e8 fallback: Courier New";
+  src: local("Courier New");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+  size-adjust: 99.9837%;
+  ascent-override: 102.5167%;
+  descent-override: 27.5045%;
+}
+@font-face {
+  font-family: "IBM Plex Mono-a63653b38a9ed5e8 fallback: Courier New";
+  src: local("Courier New");
+  font-display: swap;
+  font-weight: 400;
+  font-style: italic;
+  size-adjust: 99.9837%;
+  ascent-override: 102.5167%;
+  descent-override: 27.5045%;
+}
+:root {
+  --font: "IBM Plex Mono-a63653b38a9ed5e8", "IBM Plex Mono-a63653b38a9ed5e8 fallback: Courier New", monospace;
+}
+</style><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><!-- based on https://fav.farm, use an emoji as favicon --><link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'&gt;&lt;text x='0' y='14'&gt;📝&lt;/text&gt;&lt;/svg&gt;"><meta name="generator" content="Astro v7.2.4"><!-- Primary Meta Tags --><title>posts | cameron turner</title><meta name="title" content="posts | cameron turner"><meta name="description" content="senior software engineer"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://example.com/"><meta property="og:title" content="posts | cameron turner"><meta property="og:description" content="senior software engineer"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://example.com/"><meta property="twitter:title" content="posts | cameron turner"><meta property="twitter:description" content="senior software engineer"><!-- RSS Link --><link rel="alternate" href="/rss.xml" type="application/rss+xml" title="cameron turner"><!-- Sitemap --><link rel="sitemap" href="/sitemap-index.xml"></head><body><header data-astro-cid-nen7h5rs><div class="header-section" data-astro-cid-nen7h5rs><div class="header-frame" data-astro-cid-nen7h5rs><h1 data-astro-cid-nen7h5rs>cameron turner</h1><h2 data-astro-cid-nen7h5rs>senior software engineer</h2></div></div></header><nav data-astro-cid-nen7h5rs><a href="/" class="active" data-astro-cid-nen7h5rs="true" data-astro-cid-evkijfd6>home</a><a href="/posts" data-astro-cid-nen7h5rs="true" data-astro-cid-evkijfd6>posts</a><a href="https://github.com/cturner8" rel="noopener noreferrer" target="_blank" data-astro-cid-nen7h5rs="true" data-astro-cid-evkijfd6>github</a><a href="https://www.linkedin.com/in/cameronturner4" rel="noopener noreferrer" target="_blank" data-astro-cid-nen7h5rs="true" data-astro-cid-evkijfd6>linkedin</a></nav><main><section><ul class="posts-list"><li class="post"><a href="/post/binmate-a-binary-version-manager" class="title">📦 binmate - a binary version manager</a><br><p class="nomargin">Submission for the 2026 DEV Copilot CLI challenge</p><p class="nomargin"><time datetime="16 April 2026">16 April 2026</time></p><div><a class="tag" href="/tag/devchallenge">#devchallenge</a><a class="tag" href="/tag/github">#github</a><a class="tag" href="/tag/copilot">#copilot</a><a class="tag" href="/tag/cli">#cli</a></div></li></ul></section></main><footer data-astro-cid-jo6i4kqk>&copy; 2026<a href="https://github.com/cturner8/portfolio" target="_blank" rel="noopener noreferrer" data-astro-cid-jo6i4kqk>cturner8</a></footer></body></html>"
+`;
