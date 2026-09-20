@@ -26,6 +26,7 @@ jobs:
       contents: read
     environment:
       name: ${{ needs.setup.outputs.environment }}
+      deployment: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7.0.1
