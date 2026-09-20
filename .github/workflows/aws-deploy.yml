@@ -66,9 +66,12 @@ jobs:
           name: github-pages
           path: dist
 
+      - name: Extract build artifact
+        run: tar -xvf "${{ steps.download.outputs.download-path }}/artifact.tar" -C site
+
       - name: Sync astro assets to S3
         env:
-          DIST: ${{ steps.download.outputs.download-path }}
+          DIST: site
           BUCKET: ${{ secrets.AWS_DEPLOY_BUCKET_NAME }}
         # Content-hashed assets are immutable and safe to cache forever.
         run: |
@@ -77,7 +80,7 @@ jobs:
 
       - name: Sync content to S3
         env:
-          DIST: ${{ steps.download.outputs.download-path }}
+          DIST: site
           BUCKET: ${{ secrets.AWS_DEPLOY_BUCKET_NAME }}
         # HTML and metadata are revalidated on every request.
         run: |
