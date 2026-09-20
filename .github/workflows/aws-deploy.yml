@@ -67,7 +67,9 @@ jobs:
           path: dist
 
       - name: Extract build artifact
-        run: tar -xvf "${{ steps.download.outputs.download-path }}/artifact.tar" -C site
+        run: |
+          mkdir -p site
+          tar -xvf "${{ steps.download.outputs.download-path }}/artifact.tar" -C site
 
       - name: Sync astro assets to S3
         env:
