@@ -4,10 +4,89 @@ on:
   workflow_dispatch: {}
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.target.outputs.environment }}
+    steps:
+      - name: Determine target environment
+        id: target
+        working-directory: ${{ github.workspace }}
+        run: |
+          if [ "$GITHUB_REF_NAME" = "main" ]; then
+            echo "environment=prod" >> "$GITHUB_OUTPUT"
+          else
+            echo "environment=dev" >> "$GITHUB_OUTPUT"
+          fi
+
   build:
     runs-on: ubuntu-latest
+    needs: setup
     permissions:
       contents: read
+    environment:
+      name: ${{ needs.setup.outputs.environment }}
+      deployment: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7.0.1
+
+      - name: Install, build, and upload your site output
+        uses: withastro/action@v6.1.3
+        id: upload
+        with:
+          node-version: 24
+        env:
+          ASTRO_SITE: ${{ vars.PUBLIC_DEPLOY_URL }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [setup, build]
+    permissions:
+      id-token: write
+    environment:
+      name: ${{ needs.setup.outputs.environment }}
+      url: ${{ vars.PUBLIC_DEPLOY_URL }}
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6.3.0
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: eu-west-2
+          mask-aws-account-id: true
+          role-session-name: "${{ github.repository_owner }}-${{ github.event.repository.name }}-${{ github.run_id }}"
+          role-duration-seconds: 900
+
+      - name: Verify AWS Credentials
+        run: aws sts get-caller-identity --output off
+
+      - name: Download build artifact
+        id: download
+        uses: actions/download-artifact@v8.0.1
+        with:
+          name: github-pages
+          path: dist
+
+      - name: Extract build artifact
+        run: |
+          mkdir -p site
+          tar -xvf "${{ steps.download.outputs.download-path }}/artifact.tar" -C site
+
+      - name: Sync astro assets to S3
+        env:
+          DIST: site
+          BUCKET: ${{ secrets.AWS_DEPLOY_BUCKET_NAME }}
+        # Content-hashed assets are immutable and safe to cache forever.
+        run: |
+          aws s3 sync "${DIST}/_astro" "s3://${BUCKET}/www/_astro" --sse --delete \
+            --cache-control "public, max-age=31536000, immutable"
+
+      - name: Sync content to S3
+        env:
+          DIST: site
+          BUCKET: ${{ secrets.AWS_DEPLOY_BUCKET_NAME }}
+        # HTML and metadata are revalidated on every request.
+        run: |
+          aws s3 sync "${DIST}" "s3://${BUCKET}/www" --sse --delete \
+            --exclude "_astro/*" \
+            --cache-control "public, max-age=0, must-revalidate"
